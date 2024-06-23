@@ -22,9 +22,12 @@ export default function ProductCard({ product }: IProps) {
                             <Text w='60%' h='40px' align="left">{product.Description}</Text>
                             <Text w='40%' h='40px' align="left">{product.Weight} {product.WeightUom}</Text>
                         </HStack>
-                    </VStack>
+                    </VStack>                                        
+                </HStack>                
+                <HStack>
+                    <Text width='100%'>{product.Label}</Text>
                 </HStack>
             </CardBody>
-        </Card>
+        </Card>        
     )
 }

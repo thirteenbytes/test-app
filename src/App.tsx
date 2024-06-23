@@ -1,5 +1,5 @@
 import './App.css';
-import { Box, Card, CardBody, ChakraProvider, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, Card, CardBody, ChakraProvider, Divider, HStack, Text, VStack } from '@chakra-ui/react';
 import ProductCard from './components/ProductCard';
 import { IProductResponse } from './data/IProductResponse';
 
@@ -13,7 +13,8 @@ function App() {
       Name: "Test Product",
       Description: "This is a test product. Giving a Detail of information about this product",
       Weight: 123432,
-      WeightUom: "kg"
+      WeightUom: "kg",
+      Label: "This is the label of the product"
     },
     {
       Id: "RS434343",
@@ -21,7 +22,8 @@ function App() {
       Name: "Test Product 2",
       Description: "This is a test product 2. Giving a Detail of information about this product",
       Weight: 263656,
-      WeightUom: "kg"
+      WeightUom: "kg",
+      Label: "This is the label of the product"
     },
     {
       Id: "RS594343",
@@ -29,14 +31,15 @@ function App() {
       Name: "Test Product 3",
       Description: "This is a test product 3. Giving a Detail of information about this product",
       Weight: 163656,
-      WeightUom: "lb"
+      WeightUom: "lb",
+      Label: "This is the label of the product"
     }
   ];
 
   return (
     <ChakraProvider>
       { products.map(product => (
-        <ProductCard product={product} />
+        <ProductCard product={product} />        
       ))}
     </ChakraProvider>
   );

@@ -5,4 +5,5 @@ export interface IProductResponse {
     Description: string;
     Weight: number;
     WeightUom: string;
+    Label: string;
 }
