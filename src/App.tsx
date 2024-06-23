@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Box, Card, CardBody, ChakraProvider, HStack, Text, VStack } from '@chakra-ui/react';
+import ProductCard from './components/ProductCard';
+import { IProductResponse } from './data/IProductResponse';
+
 
 function App() {
+
+  const products: IProductResponse[] = [
+    {
+      Id: "RS123344",
+      Code: "R",
+      Name: "Test Product",
+      Description: "This is a test product. Giving a Detail of information about this product",
+      Weight: 123432,
+      WeightUom: "kg"
+    },
+    {
+      Id: "RS434343",
+      Code: "C",
+      Name: "Test Product 2",
+      Description: "This is a test product 2. Giving a Detail of information about this product",
+      Weight: 263656,
+      WeightUom: "kg"
+    },
+    {
+      Id: "RS594343",
+      Code: "R",
+      Name: "Test Product 3",
+      Description: "This is a test product 3. Giving a Detail of information about this product",
+      Weight: 163656,
+      WeightUom: "lb"
+    }
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      { products.map(product => (
+        <ProductCard product={product} />
+      ))}
+    </ChakraProvider>
   );
 }
 
