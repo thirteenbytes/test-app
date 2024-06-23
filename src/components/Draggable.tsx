@@ -6,7 +6,7 @@ interface DraggableProps {
     children: ReactNode;
 }
 
-function Draggable({ children }: DraggableProps) {
+export default function Draggable({ children }: DraggableProps) {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id: 'draggable',
     });
@@ -21,5 +21,3 @@ function Draggable({ children }: DraggableProps) {
         </Text>
     );
 }
-
-export default Draggable;

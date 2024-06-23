@@ -1,10 +1,8 @@
 import './App.css';
-import { Box, Card, CardBody, ChakraProvider, Divider, HStack, Text, VStack } from '@chakra-ui/react';
-import ProductCard from './components/ProductCard';
+import { ChakraProvider } from '@chakra-ui/react';
 import { IProductResponse } from './data/IProductResponse';
 import { DndContext, PointerSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import Draggable from './components/Draggable';
 import { useState } from 'react';
 import SortableItem from './components/SortableItem';
 
@@ -39,7 +37,26 @@ function App() {
       Weight: 163656,
       WeightUom: "lb",
       Label: "This is the label of the product"
+    },
+    {
+      Id: "4",
+      Code: "P",
+      Name: "Test Product 4",
+      Description: "This is a test product 4. Giving a Detail of information about this product",
+      Weight: 313256,
+      WeightUom: "kg",
+      Label: "This is the label of the product"
+    },
+    {
+      Id: "5",
+      Code: "R",
+      Name: "Test Product 5",
+      Description: "This is a test product 5. Giving a Detail of information about this product",
+      Weight: 766762,
+      WeightUom: "lb",
+      Label: "This is the label of the product"
     }
+
   ];
 
   const [products, setProducts] = useState<IProductResponse[]>(productSamples);
@@ -53,6 +70,9 @@ function App() {
       const newIndex = products.findIndex((product) => product.Id === over.id);
       const newProducts = arrayMove(products, oldIndex, newIndex);
       setProducts(newProducts.map((product, index) => ({ ...product, position: index + 1 })));
+
+      console.log("old: " + oldIndex + " new: " + newIndex);
+      console.log("activeId: " + active.id + " over: " + over.id);
     }
   };
 

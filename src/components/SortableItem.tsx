@@ -2,6 +2,8 @@ import { IProductResponse } from "../data/IProductResponse";
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import ProductCard from "./ProductCard";
+import { faGripLines, faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IProps {
     product: IProductResponse;
@@ -24,7 +26,7 @@ export default function SortableItem({ product }: IProps) {
     return (
         <div ref={setNodeRef} style={style} {...attributes}>
             <ProductCard product={product}/>
-            <div {...listeners} style={{ cursor: 'grab', marginLeft: '10px' }}>☰</div>
+            <div {...listeners} style={{ cursor: 'grab', marginLeft: '10px' }}><FontAwesomeIcon icon={faGripVertical} /></div>
         </div>       
     );
 }
