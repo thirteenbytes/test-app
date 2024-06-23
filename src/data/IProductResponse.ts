@@ -1,5 +1,7 @@
+import { UniqueIdentifier } from "@dnd-kit/core";
+
 export interface IProductResponse {
-    Id: string,
+    Id: UniqueIdentifier,
     Code: string,
     Name: string,
     Description: string;

@@ -2,13 +2,19 @@ import './App.css';
 import { Box, Card, CardBody, ChakraProvider, Divider, HStack, Text, VStack } from '@chakra-ui/react';
 import ProductCard from './components/ProductCard';
 import { IProductResponse } from './data/IProductResponse';
+import { DndContext, PointerSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core';
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import Draggable from './components/Draggable';
+import { useState } from 'react';
+import SortableItem from './components/SortableItem';
+
 
 
 function App() {
 
-  const products: IProductResponse[] = [
+  const productSamples: IProductResponse[] = [
     {
-      Id: "RS123344",
+      Id: "1",
       Code: "R",
       Name: "Test Product",
       Description: "This is a test product. Giving a Detail of information about this product",
@@ -17,7 +23,7 @@ function App() {
       Label: "This is the label of the product"
     },
     {
-      Id: "RS434343",
+      Id: "2",
       Code: "C",
       Name: "Test Product 2",
       Description: "This is a test product 2. Giving a Detail of information about this product",
@@ -26,7 +32,7 @@ function App() {
       Label: "This is the label of the product"
     },
     {
-      Id: "RS594343",
+      Id: "3",
       Code: "R",
       Name: "Test Product 3",
       Description: "This is a test product 3. Giving a Detail of information about this product",
@@ -36,11 +42,31 @@ function App() {
     }
   ];
 
+  const [products, setProducts] = useState<IProductResponse[]>(productSamples);
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      const oldIndex = products.findIndex((product) => product.Id === active.id);
+      const newIndex = products.findIndex((product) => product.Id === over.id);
+      const newProducts = arrayMove(products, oldIndex, newIndex);
+      setProducts(newProducts.map((product, index) => ({ ...product, position: index + 1 })));
+    }
+  };
+
   return (
     <ChakraProvider>
-      { products.map(product => (
-        <ProductCard product={product} />        
-      ))}
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={products.map(product => product.Id)} strategy={verticalListSortingStrategy}>
+          <div>
+            {products.map((product) => (
+              <SortableItem key={product.Id} product={product} />
+            ))}
+          </div>
+        </SortableContext>
+      </DndContext>
     </ChakraProvider>
   );
 }

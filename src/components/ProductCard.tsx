@@ -1,4 +1,4 @@
-import { Card, CardBody, HStack, VStack, Box, Text, CardHeader, Heading, Stack, Divider } from "@chakra-ui/react"
+import { Card, CardBody, HStack, VStack, Box, Text}  from "@chakra-ui/react"
 import { IProductResponse } from "../data/IProductResponse"
 
 interface IProps {
