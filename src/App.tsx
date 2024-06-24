@@ -70,8 +70,7 @@ function App() {
       const newIndex = products.findIndex((product) => product.Id === over.id);
       const newProducts = arrayMove(products, oldIndex, newIndex);
       setProducts(newProducts.map((product, index) => ({ ...product, position: index + 1 })));
-
-      console.log("old: " + oldIndex + " new: " + newIndex);
+      
       console.log("activeId: " + active.id + " over: " + over.id);
     }
   };
