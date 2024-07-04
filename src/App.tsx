@@ -18,7 +18,8 @@ function App() {
       Description: "This is a test product. Giving a Detail of information about this product",
       Weight: 123432,
       WeightUom: "kg",
-      Label: "This is the label of the product"
+      Label: "This is the label of the product",
+      IsActive: true
     },
     {
       Id: "2",
@@ -27,7 +28,8 @@ function App() {
       Description: "This is a test product 2. Giving a Detail of information about this product",
       Weight: 263656,
       WeightUom: "kg",
-      Label: "This is the label of the product"
+      Label: "This is the label of the product",
+      IsActive: false
     },
     {
       Id: "3",
@@ -36,7 +38,8 @@ function App() {
       Description: "This is a test product 3. Giving a Detail of information about this product",
       Weight: 163656,
       WeightUom: "lb",
-      Label: "This is the label of the product"
+      Label: "This is the label of the product",
+      IsActive: false
     },
     {
       Id: "4",
@@ -45,7 +48,8 @@ function App() {
       Description: "This is a test product 4. Giving a Detail of information about this product",
       Weight: 313256,
       WeightUom: "kg",
-      Label: "This is the label of the product"
+      Label: "This is the label of the product",
+      IsActive: false
     },
     {
       Id: "5",
@@ -54,7 +58,8 @@ function App() {
       Description: "This is a test product 5. Giving a Detail of information about this product",
       Weight: 766762,
       WeightUom: "lb",
-      Label: "This is the label of the product"
+      Label: "This is the label of the product",
+      IsActive: false
     }
 
   ];
@@ -65,6 +70,10 @@ function App() {
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
 
+    const activeProduct = products.find((product) => product.Id == active.id);
+
+    console.log(activeProduct?.Name);
+    
     if (active.id !== over.id) {
       const oldIndex = products.findIndex((product) => product.Id === active.id);
       const newIndex = products.findIndex((product) => product.Id === over.id);

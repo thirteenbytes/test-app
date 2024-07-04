@@ -25,8 +25,11 @@ export default function SortableItem({ product }: IProps) {
 
     return (
         <div ref={setNodeRef} style={style} {...attributes}>
-            <ProductCard product={product}/>
-            <div {...listeners} style={{ cursor: 'grab', marginLeft: '10px' }}><FontAwesomeIcon icon={faGripVertical} /></div>
-        </div>       
+            <ProductCard product={product} />
+
+            {!product.IsActive && (
+                <div {...listeners} style={{ cursor: 'grab', marginLeft: '10px' }}><FontAwesomeIcon icon={faGripVertical} /></div>
+            )}
+        </div>
     );
 }
