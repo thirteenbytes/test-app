@@ -71,10 +71,9 @@ function App() {
     const { active, over } = event;
 
     const activeProduct = products.find((product) => product.Id == active.id);
-
-    console.log(activeProduct?.Name);
+    const overProduct = products.find((product) => product.Id == over.id);
     
-    if (active.id !== over.id) {
+    if (active.id !== over.id && !activeProduct?.IsActive && !overProduct?.IsActive) {
       const oldIndex = products.findIndex((product) => product.Id === active.id);
       const newIndex = products.findIndex((product) => product.Id === over.id);
       const newProducts = arrayMove(products, oldIndex, newIndex);
